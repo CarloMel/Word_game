@@ -65,7 +65,7 @@ public class App {
 
             if (userGuess.equals(wordToGuess.getWordContent())) {
 
-                System.out.println("You guessedd the word " + wordToGuess.getWordContent().toUpperCase() + "!");
+                System.out.println("You guessed the word " + wordToGuess.getWordContent().toUpperCase() + "!");
                 System.out.println("It took you " + attemptsCounter + " attempts");
                 System.out.println("CONGRATS!!!");
                 repeatIntern = false;
