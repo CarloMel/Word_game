@@ -55,7 +55,6 @@ public class Word {
                     }
                 }
             }
-
         }
 
         // stampa i risultati

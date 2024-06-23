@@ -1,3 +1,7 @@
+/* 
+ * Questo codice permette di inserire un primo valore che diventerà la parola da indovinare, dopodiché il secondo valore che si tenterà di inserire saranno i tentativi di indovinarla.
+ */
+
 import java.util.Scanner;
 
 public class App {
