@@ -10,6 +10,7 @@ public class App {
 
         Scanner scanner = new Scanner(System.in);
 
+        int attemptsCounter = 1;
         String userGuess= "";
 
         System.out.println("Inserisci la parola da far indovinare");
@@ -19,26 +20,24 @@ public class App {
 
         Word wordToGuess = new Word(userValue);
 
-        System.out.println(wordToGuess);
-
-        // Filtro per non inserire una parola di lunghezza diversa da quella da indovinare
-        boolean repeatExtern = true;
         boolean repeatIntern = true;
+
+        System.out.println("La parola da indovinare è di " + wordToGuess.getWordLength() + " lettere!");
+
         do {
-            do {
-                System.out.println("La parola da indovinare è di " + wordToGuess.getWordLength() + " lettere!");
+            // Filtro per non inserire una parola di lunghezza diversa da quella da indovinare
+           
+
+                System.out.println("Inserisci la parola:");
                 userGuess= scanner.nextLine();
                 System.out.println();
                 
                 if (userGuess.length() != wordToGuess.getWordLength()) {
 
                     System.out.println("Input errato:");
-                    System.out.println(wordToGuess);
-                } else {
-                    repeatExtern = false;
-                }
-
-            } while (repeatExtern);
+                    System.out.println("La parola da indovinare è di " + wordToGuess.getWordLength() + " lettere!");
+                    continue;
+                } 
 
             System.out.println("Risultato:");
             System.out.println(wordToGuess.findMatchingLetters(userGuess));
@@ -46,11 +45,12 @@ public class App {
             if (userGuess.equals(wordToGuess.getWordContent())) {
 
                 System.out.println("You guessedd the word " + wordToGuess.getWordContent() + "!");
-                System.out.println("It took you x tries");
+                System.out.println("It took you " + attemptsCounter + " attempts");
                 System.out.println("CONGRATS!!!");
                 repeatIntern = false;
             }
 
+            attemptsCounter++;
         } while (repeatIntern);
 
 
