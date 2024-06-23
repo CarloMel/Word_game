@@ -20,7 +20,7 @@ public class App {
 
         do {
             System.out.println("Inserisci la parola da far indovinare");
-            userValue = scanner.nextLine();
+            userValue = scanner.nextLine().toUpperCase();
 
             if (isNumberPresent(userValue.toCharArray())) {
                 System.out.println("La parola non deve contenere numeri, riprova" + "\n");
@@ -44,7 +44,7 @@ public class App {
             // Filtro per non inserire una parola di lunghezza diversa da quella da
             // indovinare
             System.out.println("Inserisci la parola:");
-            userGuess = scanner.nextLine();
+            userGuess = scanner.nextLine().toUpperCase();
             System.out.println();
 
             if (userGuess.length() != wordToGuess.getWordLength()) {
