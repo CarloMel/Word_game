@@ -36,6 +36,7 @@ public class App {
 
                     System.out.println("Input errato:");
                     System.out.println("La parola da indovinare è di " + wordToGuess.getWordLength() + " lettere!");
+                    // Senza questo continue, le parole più lunghe vengono controllate mentre le più corte vanno in crash
                     continue;
                 } 
 
@@ -44,7 +45,7 @@ public class App {
 
             if (userGuess.equals(wordToGuess.getWordContent())) {
 
-                System.out.println("You guessedd the word " + wordToGuess.getWordContent() + "!");
+                System.out.println("You guessedd the word " + wordToGuess.getWordContent().toUpperCase() + "!");
                 System.out.println("It took you " + attemptsCounter + " attempts");
                 System.out.println("CONGRATS!!!");
                 repeatIntern = false;

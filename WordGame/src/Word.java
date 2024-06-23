@@ -1,12 +1,12 @@
 public class Word {
-    
+
     private String wordContent;
     private int wordLength;
 
     public Word(String wordContent) {
 
-    setWordContent(wordContent);
-    setWordLength(getWordContent().length());
+        setWordContent(wordContent);
+        setWordLength(getWordContent().length());
     }
 
     public String getWordContent() {
@@ -27,12 +27,12 @@ public class Word {
 
     public String findMatchingLetters(String userGuess) {
         // string che farà return
-        char[] matchedStringArr = new char [getWordLength()];
+        char[] matchedStringArr = new char[getWordLength()];
         // string che copia la parola da indovinare
         char[] wordContentArr = getWordContent().toCharArray();
         // string di quello che ha inserito l'utente
         char[] userGuessArr = userGuess.toCharArray();
-        
+
         for (int x = 0; x < wordContentArr.length; x++) {
 
             // blocco di codice che mette insieme le stesse lettere
@@ -41,11 +41,16 @@ public class Word {
                 // salvi lettera trovata
                 char foundLetter = userGuessArr[x];
                 // cicli nella string da indovinare
-                for (int check= 0; check < wordContentArr.length; check++) {
+                for (int check = 0; check < wordContentArr.length; check++) {
                     // se una lettera della string da indovinare è uguale alla lettera trovata
-                    if (wordContentArr[check ] == foundLetter) {
+                    if (wordContentArr[check] == foundLetter) {
                         // la aggiungi alla string che farà return
                         matchedStringArr[check] = wordContentArr[check];
+                        // se una lettera della string da indovinare NON è uguale alla lettera trovata
+                    } else {
+                        // inserisco '_'
+                        if (!Character.isLetterOrDigit(matchedStringArr[check]))
+                            matchedStringArr[check] = '_';
                     }
                 }
             }
@@ -55,7 +60,7 @@ public class Word {
         // stampa i risultati
         String matchedString = "";
         for (char i : matchedStringArr) {
-            matchedString += " " + i + " ";
+            matchedString += i;
         }
 
         return matchedString.toUpperCase();
@@ -63,7 +68,7 @@ public class Word {
 
     public boolean isLetterPresentinArray(char letter, char[] array) {
 
-        for (int i : array ) {
+        for (int i : array) {
 
             if (letter == i)
                 return true;
