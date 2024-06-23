@@ -3,7 +3,6 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) throws Exception {
         start();
-        // test();
     }
 
     public static void start() {
@@ -11,13 +10,29 @@ public class App {
         Scanner scanner = new Scanner(System.in);
 
         int attemptsCounter = 1;
-        String userGuess= "";
+        // tentativo di indovinare
+        String userGuess = "";
+        // Parola da indovinare
+        String userValue = "";
 
-        System.out.println("Inserisci la parola da far indovinare");
-        System.out.println("Suggerimento: PORTO, PONTE");
-        String userValue = scanner.nextLine();
+        // Filtro per rifiutare valori con numeri
+        boolean repeatIfNumber = true;
+
+        do {
+            System.out.println("Inserisci la parola da far indovinare");
+            userValue = scanner.nextLine();
+
+            if (isNumberPresent(userValue.toCharArray())) {
+                System.out.println("La parola non deve contenere numeri, riprova" + "\n");
+            } else {
+                repeatIfNumber = false;
+            }
+
+        } while (repeatIfNumber);
+
         System.out.println();
 
+        // Creazione oggetto Word
         Word wordToGuess = new Word(userValue);
 
         boolean repeatIntern = true;
@@ -25,20 +40,21 @@ public class App {
         System.out.println("La parola da indovinare è di " + wordToGuess.getWordLength() + " lettere!");
 
         do {
-            // Filtro per non inserire una parola di lunghezza diversa da quella da indovinare
-           
 
-                System.out.println("Inserisci la parola:");
-                userGuess= scanner.nextLine();
-                System.out.println();
-                
-                if (userGuess.length() != wordToGuess.getWordLength()) {
+            // Filtro per non inserire una parola di lunghezza diversa da quella da
+            // indovinare
+            System.out.println("Inserisci la parola:");
+            userGuess = scanner.nextLine();
+            System.out.println();
 
-                    System.out.println("Input errato:");
-                    System.out.println("La parola da indovinare è di " + wordToGuess.getWordLength() + " lettere!");
-                    // Senza questo continue, le parole più lunghe vengono controllate mentre le più corte vanno in crash
-                    continue;
-                } 
+            if (userGuess.length() != wordToGuess.getWordLength()) {
+
+                System.out.println("Input errato:");
+                System.out.println("La parola da indovinare è di " + wordToGuess.getWordLength() + " lettere!");
+                // Senza questo continue, le parole più lunghe vengono controllate mentre le più
+                // corte vanno in crash
+                continue;
+            }
 
             System.out.println("Risultato:");
             System.out.println(wordToGuess.findMatchingLetters(userGuess));
@@ -54,11 +70,16 @@ public class App {
             attemptsCounter++;
         } while (repeatIntern);
 
-
         scanner.close();
     }
 
-    public static void test() {
-        System.out.println("TEST");
+    public static boolean isNumberPresent(char[] array) {
+
+        for (char c : array) {
+            if (Character.isDigit(c))
+                return true;
+        }
+
+        return false;
     }
 }

@@ -48,8 +48,9 @@ public class Word {
                         matchedStringArr[check] = wordContentArr[check];
                         // se una lettera della string da indovinare NON è uguale alla lettera trovata
                     } else {
-                        // inserisco '_'
-                        if (!Character.isLetterOrDigit(matchedStringArr[check]))
+                        // e non è una lettera (così non viene sovrascritta)
+                        if (!Character.isLetter(matchedStringArr[check]))
+                            // inserisco '_'
                             matchedStringArr[check] = '_';
                     }
                 }
